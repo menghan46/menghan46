@@ -13,7 +13,7 @@ public class Main {
             String answersPath = null;
             //命令行输入
             try {
-                System.out.println("Please enter the command：");
+                System.out.println("请输入参数：");
                 Scanner command = new Scanner(System.in);
                 String arr[] = command.nextLine().split("\\s");
                 
@@ -63,7 +63,7 @@ public class Main {
             }
 
             /* **** 执行函数 **** */
-            System.out.println("n: " + n + ", r: " + r);
+            System.out.println("题目个数： " + n + ", 数值范围： " + r);
             getProblem problems = new getProblem();
             if (submitPath != null && answersPath != null)
                 //获取解题文件以及答案文件
@@ -73,6 +73,4 @@ public class Main {
         }
     }
 
-
-    
 }

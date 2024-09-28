@@ -42,13 +42,15 @@ public class getProblem {
             if(exTXT.createNewFile()){
                 System.out.println("创建Exercises.txt:");
                 FileOutputStream txtFile = new FileOutputStream(exTXT);
-
+                PrintStream p = new PrintStream(exTXT);
                 for(int i=0;i<txtList.size();i++){
                     System.out.print(">");
                     System.out.println(i+1 + ". " +txtList.get(i));
+                    p.println(i+1 + ". " +txtList.get(i));
                 }
 
                 txtFile.close();
+                p.close();
                 System.out.println("Exercises.txt 创建成功！");
             }
         }
