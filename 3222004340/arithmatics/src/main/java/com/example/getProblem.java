@@ -32,7 +32,7 @@ public class getProblem {
      * 生成并输出Exercises.txt
      * @param txtList 为 所得题集的 式子字符串
      */
-    private void createEXEFile(ArrayList txtList){
+    public void createEXEFile(ArrayList txtList){
         try{
             File exTXT = new File("../Exercises.txt");
 
@@ -63,7 +63,7 @@ public class getProblem {
      * 生成并输出Answer.txt
      * @param ansList 为 所得答案集的 答案字符串
      */
-    private void createAnsFile(ArrayList ansList){
+    public void createAnsFile(ArrayList ansList){
         try{
             File ansTXT = new File("../Answer.txt");
 
@@ -142,7 +142,7 @@ public class getProblem {
      * 输出 成绩
      * @param quesNum 为 Correct/Wrong的 题目序号集
      */
-    private void output(PrintStream p,ArrayList quesNum) {
+    public void output(PrintStream p,ArrayList quesNum) {
         p.print(quesNum.size() +"(");
         for(int i=0;i<quesNum.size();i++){
             System.out.print(">");
@@ -158,7 +158,7 @@ public class getProblem {
      * 获取相应文件的 正确答案 或 答题答案
      * @param path 为 文件 路径
      */
-    private ArrayList<String> obtainAnswer(String path) throws IOException {
+    public ArrayList<String> obtainAnswer(String path) throws IOException {
         ArrayList<String> answerList = new ArrayList<>();
         BufferedReader answerFile = new BufferedReader(new FileReader(path));
         String answerLine = null;

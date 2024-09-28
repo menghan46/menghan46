@@ -39,7 +39,7 @@ public class checkRepeat {
      * @param ansFormula 为 后缀表达式、运算结果、式子 的 数组
      * @return ifRepeat 表示当前式子是否重复
      */
-    private boolean ifRepeat(String[] ansFormula) {
+    public boolean ifRepeat(String[] ansFormula) {
         String formula = ansFormula[ansFormula.length-1];
         String[] rPNotation = new String[ansFormula.length-1];
         //将ansFormula从ansFormula[0]开始，拷贝到rPNotation[0]位置开始，拷贝ansFormula.length-1个数，

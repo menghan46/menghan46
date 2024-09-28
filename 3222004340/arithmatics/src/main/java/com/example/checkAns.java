@@ -130,7 +130,7 @@ public class checkAns {
      * @param operator 为 运算符
      * @return ansFormula 为 当前式子 的 计算结果，若ansFormula为null，则不符合条件
      */
-    private String calculate(String m,String n,String operator) {
+    public String calculate(String m,String n,String operator) {
         //计算结果 && 符号 && 分数切割位置
         String ansFormula = null;
         char op = operator.charAt(0);
@@ -246,7 +246,7 @@ public class checkAns {
      * @param denominator 为 分数的分母部分
      * @return ansFormula 为 当前式子 的 最简分数表达形式
      */
-    private String greatFraction (int integralPart,int molecule,int denominator) {
+    public String greatFraction (int integralPart,int molecule,int denominator) {
         String ansFormula;
         int commonFactor = 1;
 
