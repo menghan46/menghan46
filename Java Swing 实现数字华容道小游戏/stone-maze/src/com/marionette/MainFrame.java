@@ -13,7 +13,16 @@ public class MainFrame extends JFrame {
             {9,10,11,12},
             {13,14,15,0}
     };
+    //定义一个二维数组用于判断游戏是否胜利
+    private int[][] winData={
+            {1,2,3,4},
+            {5,6,7,8},
+            {9,10,11,12},
+            {13,14,15,0}
+    };
     private static final String ImagePath="stone-maze/src/image/";
+    private int row;
+    private int col;
     public MainFrame(){
         //初始化窗口,包括窗口大小等信息
         initFrame();
@@ -52,7 +61,47 @@ public class MainFrame extends JFrame {
         });
     }
 
-    private void switchAndMove(Direction direction){
+    private void switchAndMove(Direction r){
+        switch (r){
+            case UP:
+                if(row<imageData.length-1){
+                    int temp=imageData[row+1][col];
+                    imageData[row+1][col]=0;
+                    imageData[row][col]=temp;
+                    row++;
+                    initImage();
+                }
+                break;
+            case DOWN:
+                if(row>0){
+                    int temp=imageData[row-1][col];
+                    imageData[row-1][col]=0;
+                    imageData[row][col]=temp;
+                    row--;
+                    initImage();
+                }
+                break;
+            case LEFT:
+                if(col<imageData.length-1){
+                    int temp=imageData[row][col+1];
+                    imageData[row][col+1]=0;
+                    imageData[row][col]=temp;
+                    col++;
+                    initImage();
+                }
+                break;
+            case RIGHT:
+                if(col>0){
+                    int temp=imageData[row][col-1];
+                    imageData[row][col-1]=0;
+                    imageData[row][col]=temp;
+                    col--;
+                    initImage();
+                }
+                break;
+            default:
+                break;
+        }
 
     }
 
@@ -68,6 +117,14 @@ public class MainFrame extends JFrame {
                 imageData[i2][j2]=temp;
             }
         }
+        for(int i=0;i<imageData.length;i++){
+            for(int j=0;j<imageData[i].length;j++){
+                if(imageData[i][j]==0){
+                    row=i;
+                    col=j;
+                }
+            }
+        }
     }
 
     private void initMenu() {
@@ -79,12 +136,23 @@ public class MainFrame extends JFrame {
            dispose();
         });
         JMenuItem restartItem=new JMenuItem("重新开始");
+        restartItem.addActionListener(e -> {
+            initRandomArray();
+            initImage();
+        });
         jMenu.add(restartItem);
         jMenuBar.add(jMenu);
         this.setJMenuBar(jMenuBar);
     }
 
     private void initImage() {
+        //先清空面板上的所有图层
+        this.getContentPane().removeAll();
+        if(isWin()){
+            JLabel label=new JLabel(new ImageIcon(ImagePath+"win.png"));
+            label.setBounds(124,230,266,88);
+            this.add(label);
+        }
         for(int i=0;i<imageData.length;i++){
             for(int j=0;j<imageData[i].length;j++){
                 String imageName=imageData[i][j]+".png";
@@ -103,6 +171,20 @@ public class MainFrame extends JFrame {
         JLabel jLabel=new JLabel(imageIcon);
         jLabel.setBounds(0,0,450,484);
         this.add(jLabel);
+
+        //刷新窗口
+        this.repaint();
+    }
+
+    private boolean isWin() {
+        for(int i=0;i<imageData.length;i++){
+            for(int j=0;j<imageData[i].length;j++){
+                if(imageData[i][j]!=winData[i][j]){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private void initFrame(){
